@@ -101,16 +101,16 @@ async def _(client, inline_query):
             )
 
 
-@app.on_inline_query(filters.regex("^alv_cls"))
+@app.on_callback_query(filters.regex("^alv_cls"))
 async def _(cln, cq):
     get_id = cq.data.split()
     if not cq.from_user.id == int(get_id[2]):
         return await cq.answer(
-            f"❌ GAUSAH PENCET ANJENG, GUE JIJIK.",
+            f"**❌ GAUSAH PENCET ANJENG, GUE JIJIK.**",
             True,
         )
     unPacked = unpackInlineMessage(cq.inline_message_id)
-    for my in bots:
+    for my in botlist:
         if cq.from_user.id == int(my.me.id):
             await my.delete_messages(
                 unPacked.chat_id, [int(get_id[1]), unPacked.message_id]
