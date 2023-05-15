@@ -7,7 +7,7 @@
 
 
 from pyrogram import filters
-from kynaylibs.nan.utils.db import pmpermit as set
+from kynaylibs.nan.utils.db import permit as set
 from . import *
 from .apm import get_arg
 
