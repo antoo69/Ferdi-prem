@@ -18,7 +18,7 @@ async def _(client, message):
     if len(message.command) < 2:
         return await Tm.edit(f"<b>Gunakan format :<code>ai</code> [pertanyaan]</b>")
     try:
-        response = OpenAi.text(message.text.split(None, 1)[1])
+        response = OpenAi.Text(message.text.split(None, 1)[1])
         await message.reply(response)
         await Tm.delete()
     except Exception as error:
@@ -32,7 +32,7 @@ async def _(client, message):
     if len(message.command) < 2:
         return await Tm.edit(f"<b>Gunakan format<code>img</code> [pertanyaan]</b>")
     try:
-        response = OpenAi.photo(message.text.split(None, 1)[1])
+        response = OpenAi.Photo(message.text.split(None, 1)[1])
         msg = message.reply_to_message or message
         await client.send_photo(message.chat.id, response, reply_to_message_id=msg.id)
         return await Tm.delete()
