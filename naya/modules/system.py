@@ -344,9 +344,7 @@ async def varget_(client, message):
 @bots.on_message(filters.command("getdb", cmd) & filters.me)
 async def get_keys(client, message):
     data = mongo.list_database_names()
-    listdata = "\n".join([f" • {name}" for name in data])
-    result_text = f"**Daftar Database :**\n`{listdata}`"
-    await message.reply(result_text)
+    await eor(message, f"Daftar Database:\n{', '.join(data)}")
 
 
 @bots.on_message(filters.command("setdb", cmd) & filters.me)
