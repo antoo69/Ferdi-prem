@@ -4,6 +4,8 @@ import os
 import sys
 from io import BytesIO
 from os import environ, execle, remove
+from dotenv import load_dotenv
+
 
 import dotenv
 import heroku3
@@ -19,6 +21,10 @@ from . import *
 
 HAPP = None
 
+load_dotenv(".env")
+
+def anu_heroku():
+    return "DYNO" in os.environ
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -249,14 +255,14 @@ async def set_var(client, message):
             config_vars = heroku.get_config_vars(app_name)
             if to_set in config_vars:
                 config_vars[to_set] = value
-                await tai.edit(f"Berhasil Mengubah var {to_set} menjadi {value}")
+                await tai.edit(f"**Berhasil Mengubah var `{to_set}` menjadi `{value}`**")
             else:
                 config_vars[to_set] = value
-                await tai.edit(f"Berhasil Menambahkan var {to_set} menjadi {value}")
+                await tai.edit(f"**Berhasil Menambahkan var `{to_set}` menjadi `{value}`**")
             heroku.update_config_vars(app_name, config_vars)
         else:
             await tai.edit(
-                "Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku"
+                "**Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku.**"
             )
     else:
         path = ".env"
@@ -265,9 +271,9 @@ async def set_var(client, message):
         with open(path, "a") as file:
             file.write(f"\n{to_set}={value}")
         if dotenv.get_key(path, to_set):
-            await tai.edit(f"Berhasil Mengubah var {to_set} menjadi {value}")
+            await tai.edit(f"**Berhasil Mengubah var `{to_set}` menjadi `{value}`**")
         else:
-            await tai.edit(f"Berhasil Menambahkan var {to_set} menjadi {value}")
+            await tai.edit(f"**Berhasil Menambahkan var `{to_set}` menjadi `{value}`**")
         restart()
 
 
@@ -278,7 +284,6 @@ async def vardel_(client, message):
     ajg = await eor(message, "`Processing...`")
     check_var = message.text.split(None, 2)[1]
     if os.environ.get("DYNO"):
-        # Running on Heroku
         if "HEROKU_APP_NAME" in os.environ and "HEROKU_API_KEY" in os.environ:
             from heroku import Heroku
 
@@ -287,21 +292,100 @@ async def vardel_(client, message):
             config_vars = heroku.get_config_vars(app_name)
             if check_var in config_vars:
                 del config_vars[check_var]
-                await ajg.edit(f"Berhasil Menghapus var {check_var}")
+                await ajg.edit(f"**Berhasil Menghapus var `{check_var}`**")
                 heroku.update_config_vars(app_name, config_vars)
             else:
-                return await ajg.edit(f"Tidak dapat menemukan var {check_var}")
+                return await ajg.edit(f"**Tidak dapat menemukan var `{check_var}`**")
         else:
             await ajg.edit(
-                "Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku"
+                "**Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku.**"
             )
     else:
         path = ".env"
         if not os.path.exists(path):
-            return await ajg.edit(".env file not found.")
+            return await ajg.edit("`.env file not found.`")
         dotenv.unset_key(path, check_var)
         if dotenv.get_key(path, check_var) is None:
-            await ajg.edit(f"Berhasil Menghapus var {check_var}")
+            await ajg.edit(f"**Berhasil Menghapus var `{check_var}`.**")
         else:
-            return await ajg.edit(f"Tidak dapat menemukan var {check_var}")
+            return await ajg.edit(f"**Tidak dapat menemukan var `{check_var}`**")
         restart()
+
+@bots.on_message(filters.command("getvar", cmd) & filters.me)
+async def varget_(client, message):
+    if len(message.command) != 2:
+        return await eor(
+            message, f"<b>Usage:</b> {cmd}getvar [Var Name]"
+        )
+    babi = await eor(message, "`Processing...`")
+    check_var = message.text.split(None, 2)[1]
+    if anu_heroku():
+        if check_var in os.environ:
+            return await babi.edit(
+                f"<b>{check_var}:</b> <code>{os.environ[check_var]}</code>"
+            )
+        else:
+            return await babi.edit(f"**Tidak dapat menemukan var `{check_var}`.**")
+    else:
+        path = ".env"
+        if not os.path.exists(path):
+            return await babi.edit("`.env file not found.`")
+        output = dotenv.get_key(path, check_var)
+        if not output:
+            await babi.edit(f"**Tidak dapat menemukan var `{check_var}`.**")
+        else:
+            return await babi.edit(f"<b>{check_var}:</b> <code>{str(output)}</code>")
+
+@bots.on_message(filters.command("getdb", cmd) & filters.me)
+async def get_keys(client, message):
+    data = mongo.list_database_names()
+    listdata = "\n".join([f"  **•** {name}" for name in data])
+    result_text = f"**Daftar Database :**\n`{listdata}`"
+    await eor(message, result_text)
+
+
+@bots.on_message(filters.command("setdb", cmd) & filters.me)
+async def set_db(client, message):
+    if len(message.command) < 3:
+        await eor(message, f"`Usage: {cmd}setdb [Database Name] [Variable Value].`")
+        return
+    user_id = client.me.id
+    db_name = message.command[1]
+    variable_value = message.command[2]
+    collection = db[db_name]
+    collection.insert_one({"user_id": user_id, "value": variable_value})
+    await eor(message, f"**Variabel telah diatur di database `{db_name}`.**")
+    
+@bots.on_message(filters.command("deldb", cmd) & filters.me)
+async def del_db(client, message):
+    if len(message.command) < 2:
+        await eor(message, f"`Usage: {cmd}deldb [Database Name].`")
+        return
+    db_name = message.command[1]
+    variable_name = message.command[2]
+    user_id = client.me.id
+    collection = db[db_name]
+    collection.delete_one({"user_id": user_id, "value": db_name})
+    await message.reply_text(f"**`{db_name}` telah dihapus dari database.**")
+    
+    
+__MODULE__ = "Variable"
+__HELP__ = f"""
+๏ Perintah: <code>{cmd}setvar</code> [variable][value]
+◉ Penjelasan: Untuk mengatur variable di heroku atau vps.
+
+๏ Perintah: <code>{cmd}delvar</code> [variable]
+◉ Penjelasan: Untuk menghapus variable di heroku atau vps.
+
+๏ Perintah: <code>{cmd}getvar</code> [variable]
+◉ Penjelasan: Untuk mengambil variable di heroku atau vps.
+
+๏ Perintah: <code>{cmd}getdb</code>
+◉ Penjelasan: Untuk melihat variable di database mongo.
+
+๏ Perintah: <code>{cmd}deldb</code> [variable]
+◉ Penjelasan: Untuk menghapus variable di database mongo.
+
+๏ Perintah: <code>{cmd}setdb</code> [variable] [value]
+◉ Penjelasan: Untuk mengatur variable di database mongo.
+"""
