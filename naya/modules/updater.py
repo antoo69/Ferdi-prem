@@ -18,8 +18,10 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from pyrogram import filters
 from pyrogram.types import Message
-from . import *
+
 from naya.config import *
+
+from . import *
 
 XCB = [
     "/",

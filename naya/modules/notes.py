@@ -6,8 +6,9 @@
 # FULL MONGO NIH JING FIX MULTI CLIENT
 
 from asyncio import sleep
-from pyrogram import Client, filters
-from pyrogram.types import Message
+
+from pyrogram import filters
+
 from . import *
 
 
@@ -15,23 +16,25 @@ from . import *
 async def simpan_note(client, message):
     name = get_arg(message)
     user_id = message.from_user.id
-    chat_id = message.chat.id
+    message.chat.id
     msg = message.reply_to_message
     if not msg:
         return await message.reply("`Silakan balas ke pesan.`")
     botlog_chat_id = await get_botlog(user_id)
     if not botlog_chat_id:
-        return await message.reply("`Maaf, tidak dapat menemukan ID chat log bot.`\nPastikan Anda Telah Mengtur Log Group Anda")
+        return await message.reply(
+            "`Maaf, tidak dapat menemukan ID chat log bot.`\nPastikan Anda Telah Mengtur Log Group Anda"
+        )
     anu = await msg.forward(botlog_chat_id)
     msg_id = anu.id
-    await client.send_message(botlog_chat_id,
+    await client.send_message(
+        botlog_chat_id,
         f"#NOTE\nKEYWORD: {name}"
         "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon jangan dihapus !!",
     )
     await sleep(1)
     await save_note(user_id, name, msg_id)
     await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
-
 
 
 @bots.on_message(filters.me & filters.command("get", cmd))
@@ -60,7 +63,7 @@ async def remove_notes(client, message):
 @bots.on_message(filters.me & filters.command("notes", cmd))
 async def get_notes(client, message):
     user_id = message.from_user.id
-    botlog_chat_id = await get_botlog(user_id)
+    await get_botlog(user_id)
     _notes = await get_note_names(user_id)
     if not _notes:
         return await message.reply("**Tidak ada catatan.**")

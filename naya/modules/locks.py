@@ -4,7 +4,6 @@ from pyrogram.types import ChatPermissions
 
 from . import *
 
-
 incorrect_parameters = "<b>Parameter Salah, Periksa Locks Parameter</b>."
 
 data = {
@@ -66,7 +65,9 @@ async def tg_lock(client, message, permissions: list, perm: str, lock: bool):
             "<b>Untuk membuka kunci ini, Anda harus membuka 'pesan' terlebih dahulu.</b>"
         )
 
-    await eor(message, ("<b>🔒 Sudah Terkunci.</b>" if lock else "<b>🔓 Sudah Terbuka.</b>"))
+    await eor(
+        message, ("<b>🔒 Sudah Terkunci.</b>" if lock else "<b>🔓 Sudah Terbuka.</b>")
+    )
 
 
 @bots.on_message(filters.command(["lock", "unlock"], cmd) & filters.me)

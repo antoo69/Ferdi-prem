@@ -2,9 +2,8 @@ import os
 import sys
 import traceback
 from io import BytesIO, StringIO
+
 from . import *
-
-
 
 __MODULE__ = "Devs"
 
@@ -18,6 +17,7 @@ __HELP__ = f"""
 ๏ Perintah: <code>{cmd}sh</code>
 ◉ Penjelasan: You know bruh.
 """
+
 
 @bots.on_message(filters.command("sh", cmd) & filters.me)
 async def _(client, message):

@@ -9,7 +9,6 @@ from pyrogram import filters
 
 from . import *
 
-
 __MODULE__ = "Spam"
 __HELP__ = f"""
 ๏ Perintah: <code>{cmd}spam</code> [number_messages - message_text]
@@ -18,7 +17,6 @@ __HELP__ = f"""
 ๏ Perintah: <code>{cmd}spam</code> [reply_user - number_messages - message_text]
 ◉ Penjelasan: Untuk spam pesan ke user yang di reply.
 """
-
 
 
 @bots.on_message(filters.me & filters.command("spam", cmd))

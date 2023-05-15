@@ -3,6 +3,7 @@ from os import remove
 
 from pyrogram import filters
 from pyrogram.enums import ChatType
+
 from . import *
 
 __MODULE__ = "Info"
@@ -13,7 +14,6 @@ __HELP__ = f"""
 ๏ Perintah: <code>{cmd}cinfo</code> [chat_id/username/reply to chat]
 ◉ Penjelasan: Untuk mendapatkan info group/channel dengan deskripsi lengkap.
 """
-
 
 
 @bots.on_message(filters.me & filters.command(["whois", "info"], cmd))
@@ -77,7 +77,6 @@ async def _(client, message):
             await Tm.edit(out_str, disable_web_page_preview=True)
     except Exception as e:
         return await Tm.edit(f"INFO: {e}")
-
 
 
 @bots.on_message(filters.me & filters.command(["cwhois", "cinfo"], cmd))

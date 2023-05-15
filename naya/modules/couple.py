@@ -8,7 +8,7 @@
 import random
 from datetime import datetime
 
-from pyrogram import filters, Client
+from pyrogram import filters
 from pyrogram.enums import ChatType
 
 from . import *
@@ -40,7 +40,9 @@ tomorrow = str(dt_tom())
 @bots.on_message(filters.me & filters.command(["couple"], cmd))
 async def couple(client, message):
     if message.chat.type == ChatType.PRIVATE:
-        return await message.reply_text("Perintah ini hanya dapat digunakan dalam grup.")
+        return await message.reply_text(
+            "Perintah ini hanya dapat digunakan dalam grup."
+        )
     try:
         chat_id = message.chat.id
         is_selected = await get_couple(chat_id, today)
@@ -79,7 +81,7 @@ __Pasangan baru dipilih {tomorrow}__"""
     except Exception as e:
         print(e)
         await message.reply_text(e)
-        
+
 
 __MODULE__ = "Couple"
 __HELP__ = f"""

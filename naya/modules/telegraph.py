@@ -16,7 +16,6 @@ get_result = telegraph.create_account(short_name=app.me.username)
 auth_url = get_result["auth_url"]
 
 
-
 @bots.on_message(filters.me & filters.command("tg", cmd))
 async def _(client, message):
     XD = await eor(message, "<code>Sedang Memproses . . .</code>")

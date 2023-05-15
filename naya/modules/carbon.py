@@ -8,8 +8,8 @@
 import asyncio
 from io import BytesIO
 
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram import filters
+
 from . import *
 
 

@@ -7,7 +7,8 @@
 # FULL MONGO NIH JING FIX MULTI CLIENT
 
 
-import random 
+import random
+
 from . import *
 
 __MODULE__ = "Meme"
@@ -33,4 +34,3 @@ async def _(client, message):
     )
     await saved.delete()
     await TM.delete()
-

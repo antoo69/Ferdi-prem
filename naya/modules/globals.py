@@ -7,6 +7,7 @@
 
 
 import asyncio
+
 from pyrogram import filters
 from pyrogram.enums import ChatType
 
@@ -55,7 +56,7 @@ async def _(client, message):
                     except BaseException:
                         failed += 1
                         await asyncio.sleep(0.1)
-        #await nay.delete()
+        # await nay.delete()
         return await nay.edit(
             text[0].format(
                 done, failed, user.id, user.first_name, (user.last_name or "")
@@ -77,7 +78,7 @@ async def _(client, message):
                 except BaseException:
                     failed += 1
                     await asyncio.sleep(0.1)
-        #await nay.delete()
+        # await nay.delete()
         return await nay.edit(
             text[1].format(
                 done, failed, user.id, user.first_name, (user.last_name or "")
@@ -104,7 +105,7 @@ async def _(client, message):
                     except BaseException:
                         failed += 1
                         await asyncio.sleep(0.1)
-        #await nay.delete()
+        # await nay.delete()
         return await nay.edit(
             text[0].format(
                 done, failed, user.id, user.first_name, (user.last_name or "")
@@ -126,7 +127,7 @@ async def _(client, message):
                 except BaseException:
                     failed += 1
                     await asyncio.sleep(0.1)
-        #await nay.delete()
+        # await nay.delete()
         return await nay.edit(
             text[1].format(
                 done, failed, user.id, user.first_name, (user.last_name or "")

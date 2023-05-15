@@ -11,7 +11,6 @@ from pyrogram import filters
 
 from . import *
 
-
 __MODULE__ = "Filters"
 __HELP__ = f"""
 ๏ Perintah: <code>{cmd}addfil</code> [nama filter] [balas ke pesan]

@@ -8,6 +8,7 @@
 
 from pyrogram import *
 from pyrogram.types import *
+
 from . import *
 
 __MODULE__ = "Fonts"

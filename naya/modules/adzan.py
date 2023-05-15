@@ -1,9 +1,9 @@
 import json
 
 import requests
-from . import *
 from pyrogram import filters
 
+from . import *
 
 __MODULE__ = "Adzan"
 __HELP__ = f"""

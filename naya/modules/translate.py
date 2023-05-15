@@ -16,7 +16,6 @@ __HELP__ = f"""
 """
 
 
-
 @bots.on_message(filters.me & filters.command("tts", cmd))
 async def _(_, message):
     if message.reply_to_message:
@@ -58,7 +57,6 @@ async def _(_, message):
         os.remove("text_to_speech.oog")
     except FileNotFoundError:
         pass
-
 
 
 @bots.on_message(filters.me & filters.command(["tr", "tl"], cmd))

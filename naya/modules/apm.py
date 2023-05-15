@@ -6,9 +6,10 @@
 # FULL MONGO NIH JING FIX MULTI CLIENT
 
 
-from pyrogram import enums, filters
-from . import *
 from kynaylibs.nan.utils.db import permit as set
+from pyrogram import enums, filters
+
+from . import *
 
 PM_LOGGER = 1
 FLOOD_CTRL = 0
@@ -24,6 +25,7 @@ class LOG_CHATS:
 
 
 LOG_CHATS_ = LOG_CHATS()
+
 
 async def denied_users(filter, client, message):
     user_id = client.me.id
@@ -147,14 +149,13 @@ async def reply_pm(client, message):
     USERS_AND_WARNS.update({user: 0})
 
 
-
 @bots.on_message(
     filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
 )
 async def pm_log(client, message):
     user = message.from_user.id
     biji = message.from_user.mention
-    sempak = message.text
+    message.text
     user_id = client.me.id
     botlog = await get_log_groups(user_id)
     if message.chat.id != 777000:

@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.enums import ChatType
+
 from . import *
 
 __MODULE__ = "Id"
@@ -10,7 +11,6 @@ __HELP__ = f"""
 ๏ Perintah: <code>{cmd}id</code> [reply to user/media]
 ◉ Penjelasan: Untuk mengetahui ID dari user/media.
 """
-
 
 
 @bots.on_message(filters.me & filters.command("id", cmd))
@@ -29,7 +29,9 @@ async def showid(client, message):
         )
     elif chat_type in [ChatType.GROUP, ChatType.SUPERGROUP]:
         _id = ""
-        _id += f"💬 <b>ID {message.chat.title} Adalah:</b> <code>{message.chat.id}</code>\n"
+        _id += (
+            f"💬 <b>ID {message.chat.title} Adalah:</b> <code>{message.chat.id}</code>\n"
+        )
         if message.reply_to_message:
             _id += (
                 f"👤 <b> ID {message.reply_to_message.from_user.first_name} Adalah:</b> "

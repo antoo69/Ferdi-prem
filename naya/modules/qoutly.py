@@ -238,7 +238,7 @@ def isArgInt(txt) -> list:
         return [False, 0]
 
 
-@bots.on_message(filters.me & filters.command("q", cmd	))
+@bots.on_message(filters.me & filters.command("q", cmd))
 async def msg_quotly_cmd(self: Client, ctx: Message):
     if len(ctx.text.split()) > 1:
         check_arg = isArgInt(ctx.command[1])

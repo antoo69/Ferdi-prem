@@ -8,12 +8,12 @@
 
 import asyncio
 from time import time
+
 from pyrogram import Client, enums, filters
 from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 
 from . import *
-
 from .profile import extract_user, extract_userid
 
 admins_in_chat = {}
@@ -113,7 +113,7 @@ async def member_ban(client: Client, message: Message):
     if user_id in (await list_admins(client, message.chat.id)):
         return await ky.edit("Tidak bisa banned admin.")
     try:
-        #await ky.delete()
+        # await ky.delete()
         mention = (await client.get_users(user_id)).mention
     except IndexError:
         mention = (
@@ -149,7 +149,7 @@ async def member_unban(client: Client, message: Message):
     try:
         await message.chat.unban_member(user)
         await asyncio.sleep(0.1)
-        #await zz.delete()
+        # await zz.delete()
         umention = (await client.get_users(user)).mention
         await zz.edit(f"Unbanned! {umention}")
     except ChatAdminRequired:
@@ -190,7 +190,7 @@ async def mute(client, message):
         return await nay.edit("Tidak bisa mute dev!")
     if user_id in (await list_admins(client, message.chat.id)):
         return await nay.edit("Tidak bisa mute admin.")
-    #await nay.delete()
+    # await nay.delete()
     mention = (await client.get_users(user_id)).mention
     msg = (
         f"**Muted User:** {mention}\n"
@@ -213,7 +213,7 @@ async def unmute(client: Client, message: Message):
         return await kl.edit("Pengguna tidak ditemukan.")
     try:
         await message.chat.restrict_member(user_id, permissions=unmute_permissions)
-        #await kl.delete()
+        # await kl.delete()
         umention = (await client.get_users(user_id)).mention
         await kl.edit(f"Unmuted! {umention}")
     except ChatAdminRequired:
@@ -232,7 +232,7 @@ async def kick_user(client: Client, message: Message):
         return await ny.edit("Tidak bisa kick dev!.")
     if user_id in (await list_admins(client, message.chat.id)):
         return await ny.edit("Tidak bisa kick admin.")
-    #await ny.delete()
+    # await ny.delete()
     mention = (await client.get_users(user_id)).mention
     msg = f"""
 **Kicked User:** {mention}
@@ -275,7 +275,7 @@ async def promotte(client: Client, message: Message):
                 ),
             )
             await asyncio.sleep(1)
-            #await biji.delete()
+            # await biji.delete()
             umention = (await client.get_users(user_id)).mention
             return await biji.edit(f"Fully Promoted! {umention}")
 
@@ -293,7 +293,7 @@ async def promotte(client: Client, message: Message):
             ),
         )
         await asyncio.sleep(1)
-        #await biji.delete()
+        # await biji.delete()
         umention = (await client.get_users(user_id)).mention
         await biji.edit(f"Promoted! {umention}")
     except ChatAdminRequired:
@@ -328,7 +328,7 @@ async def demote(client: Client, message: Message):
         ),
     )
     await asyncio.sleep(1)
-    #await sempak.delete()
+    # await sempak.delete()
     umention = (await client.get_users(user_id)).mention
     await sempak.edit(f"Demoted! {umention}")
 

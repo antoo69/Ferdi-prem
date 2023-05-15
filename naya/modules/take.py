@@ -6,8 +6,9 @@
 # © @KynanSupport
 # FULL MONGO NIH JING FIX MULTI CLIENT
 
-from . import *
 from pyrogram.enums import MessagesFilter
+
+from . import *
 
 
 @bots.on_message(filters.me & filters.command(["take"], cmd))
@@ -45,7 +46,6 @@ async def _(client, message):
     return await message.reply(
         f"✅ {done}/{message.command[3]} {message.command[2]} telah berhasil diambil"
     )
-
 
 
 __MODULE__ = "Take"

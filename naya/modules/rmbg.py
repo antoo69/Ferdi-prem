@@ -3,6 +3,7 @@ import os
 from pyrogram import filters
 from pyrogram.types import *
 from removebg import RemoveBg
+
 from . import *
 
 RMBG_API = os.environ.get("RMBG_API", "a6qxsmMJ3CsNo7HyxuKGsP1o")
@@ -16,7 +17,6 @@ __HELP__ = f"""
 ๏ Perintah: <code>{cmd}rmbg</code> [reply to photo]
 ◉ Penjelasan: Untuk menghapus background dari foto.
 """
-
 
 
 @bots.on_message(filters.me & filters.command("rmbg", cmd))
@@ -45,4 +45,6 @@ async def remove_bg(client, message):
             print(e)
             await Tm.edit("`Telah terjadi suatu kesalahan!.`")
     else:
-        await Tm.edit("**Usage: Mohon reply ke gambar yang ingin dihapus backgroundnya!**")
+        await Tm.edit(
+            "**Usage: Mohon reply ke gambar yang ingin dihapus backgroundnya!**"
+        )

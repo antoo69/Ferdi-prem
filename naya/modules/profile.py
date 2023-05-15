@@ -7,6 +7,7 @@
 
 import os
 from asyncio import sleep
+
 from pyrogram import Client
 from pyrogram.types import Message
 
@@ -136,13 +137,14 @@ async def setname(client, message):
         name = message.text.split(None, 1)[1]
     tex = await message.reply_text("`Processing . . .`")
     if not name:
-    	  return await tex.edit("Berikan text atau balas text untuk diatur sebagai nama anda.")
+        return await tex.edit(
+            "Berikan text atau balas text untuk diatur sebagai nama anda."
+        )
     try:
         await client.update_profile(first_name=name)
         await tex.edit(f"**Berhasil mengganti nama menjadi** `{name}`")
     except Exception as e:
         await tex.edit(f"**ERROR:** `{e}`")
-        
 
 
 @bots.on_message(filters.command(["setbio", "sbio"], cmd) & filters.me)
@@ -153,12 +155,14 @@ async def set_bio(client: Client, message: Message):
         bio = message.text.split(None, 1)[1]
     tex = await message.reply_text("`Processing . . .`")
     if not bio:
-    	  return await tex.edit("Berikan text atau balas text untuk diatur sebagai nama anda.")
+        return await tex.edit(
+            "Berikan text atau balas text untuk diatur sebagai nama anda."
+        )
     try:
-       await client.update_profile(bio=bio)
-       await tex.edit(f"**Berhasil mengganti bio menjadi** `{bio}`")
+        await client.update_profile(bio=bio)
+        await tex.edit(f"**Berhasil mengganti bio menjadi** `{bio}`")
     except Exception as e:
-       await tex.edit(f"**ERROR:** `{e}`")
+        await tex.edit(f"**ERROR:** `{e}`")
 
 
 @bots.on_message(filters.command(["setpp", "setpf"], cmd) & filters.me)

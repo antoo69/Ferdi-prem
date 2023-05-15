@@ -24,7 +24,6 @@ from yt_dlp import YoutubeDL
 
 from . import *
 
-
 s_dict = {}
 GPC = {}
 

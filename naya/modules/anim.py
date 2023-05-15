@@ -8,7 +8,7 @@
 
 import asyncio
 import random
-from asyncio import sleep
+
 import requests
 from pyrogram import *
 from pyrogram import Client, filters
@@ -193,9 +193,7 @@ async def hello_world(client: Client, message: Message):
     )
 
 
-@bots.on_message(
-    filters.me & (filters.command(["ahh"], cmd) | filters.regex("^ahh "))
-)
+@bots.on_message(filters.me & (filters.command(["ahh"], cmd) | filters.regex("^ahh ")))
 async def hello_world(client: Client, message: Message):
     mg = await eor(message, "ahh")
     await asyncio.sleep(0.2)

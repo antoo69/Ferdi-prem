@@ -6,7 +6,9 @@
 # FULL MONGO NIH JING FIX MULTI CLIENT
 
 from datetime import datetime
-from pyrogram import Client, filters
+
+from pyrogram import filters
+
 from . import *
 
 __MODULE__ = "Afk"

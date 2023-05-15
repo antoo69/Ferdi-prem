@@ -1,25 +1,15 @@
 import asyncio
 import math
 import sys
-from os import remove
-import heroku3
-import time
-import re
-import asyncio
-import math
-import shutil
-import sys
-import dotenv
-import datetime
-from dotenv import load_dotenv
-from os import environ, execle, path
-from datetime import datetime, timedelta
+from io import BytesIO
+from os import environ, execle, remove
+
 import heroku3
 import requests
 import urllib3
 from pyrogram import *
 from pyrogram.types import *
-from io import BytesIO
+
 from naya.config import *
 from naya.logging import LOGGER
 
@@ -166,7 +156,6 @@ async def logs_ubot(client, message):
     )
     await biji.delete()
     remove("Logs-Heroku.txt")
-
 
 
 @app.on_message(filters.command(["user"], cmd) & filters.me)

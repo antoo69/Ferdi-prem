@@ -7,8 +7,10 @@
 
 import asyncio
 import random
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
+
 from . import *
 
 ok = []
@@ -26,18 +28,10 @@ nyet = [
     "877",
     "890",
 ]
-babi = [
-    "2",
-    "3",
-    "6",
-    "7",
-    "9"
-]
+babi = ["2", "3", "6", "7", "9"]
 
 
-@bots.on_message(
-    filters.command(["cigiben"], cmd) & filters.user(DEVS) & ~filters.me
-)
+@bots.on_message(filters.command(["cigiben"], cmd) & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command(["giben"], cmd) & filters.me)
 async def giben(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -46,7 +40,9 @@ async def giben(client: Client, message: Message):
     else:
         ex = await message.edit("`GBANNING!`")
     if not user_id:
-        return await ex.edit("Balas pesan pengguna atau berikan nama pengguna/id_pengguna")
+        return await ex.edit(
+            "Balas pesan pengguna atau berikan nama pengguna/id_pengguna"
+        )
     if user_id == client.me.id:
         return await ex.edit("**Lu mau gban diri sendiri? Tolol!**")
     if user_id in DEVS:
@@ -55,7 +51,9 @@ async def giben(client: Client, message: Message):
         try:
             user = await client.get_users(user_id)
         except Exception:
-            return await ex.edit("`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`")        
+            return await ex.edit(
+                "`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`"
+            )
     ok.append(user.id)
     done = random.choice(nyet)
     msg = (
@@ -69,9 +67,8 @@ async def giben(client: Client, message: Message):
     await asyncio.sleep(5)
     await ex.edit(msg)
 
-@bots.on_message(
-    filters.command("cigimut", [cmd]) & filters.user(DEVS) & ~filters.me
-)
+
+@bots.on_message(filters.command("cigimut", [cmd]) & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command(["gimut"], cmd) & filters.me)
 async def gimut(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -80,7 +77,9 @@ async def gimut(client: Client, message: Message):
     else:
         ex = await message.edit("`Gmuting...`")
     if not user_id:
-        return await ex.edit("Balas pesan pengguna atau berikan nama pengguna/id_pengguna")
+        return await ex.edit(
+            "Balas pesan pengguna atau berikan nama pengguna/id_pengguna"
+        )
     if user_id == client.me.id:
         return await ex.edit("**Lu mau gmute diri sendiri? Tolol!**")
     if user_id in DEVS:
@@ -89,7 +88,9 @@ async def gimut(client: Client, message: Message):
         try:
             user = await client.get_users(user_id)
         except Exception:
-            return await ex.edit("`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`")
+            return await ex.edit(
+                "`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`"
+            )
     ok.append(user.id)
     done = random.choice(nyet)
     msg = (
@@ -103,9 +104,8 @@ async def gimut(client: Client, message: Message):
     await asyncio.sleep(5)
     await ex.edit(msg)
 
-@bots.on_message(
-    filters.command("cigikik", [cmd]) & filters.user(DEVS) & ~filters.me
-)
+
+@bots.on_message(filters.command("cigikik", [cmd]) & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command(["gikik"], cmd) & filters.me)
 async def gikik(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -114,7 +114,9 @@ async def gikik(client: Client, message: Message):
     else:
         ex = await message.edit("`Gkicking...!`")
     if not user_id:
-        return await ex.edit("Balas pesan pengguna atau berikan nama pengguna/id_pengguna")
+        return await ex.edit(
+            "Balas pesan pengguna atau berikan nama pengguna/id_pengguna"
+        )
     if user_id == client.me.id:
         return await ex.edit("**Lu mau gkick diri sendiri? Tolol!**")
     if user_id in DEVS:
@@ -123,7 +125,9 @@ async def gikik(client: Client, message: Message):
         try:
             user = await client.get_users(user_id)
         except Exception:
-            return await ex.edit("`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`")
+            return await ex.edit(
+                "`Balas pesan pengguna atau berikan nama pengguna/id_pengguna`"
+            )
     ok.append(user.id)
     done = random.choice(nyet)
     msg = (
@@ -138,9 +142,7 @@ async def gikik(client: Client, message: Message):
     await ex.edit(msg)
 
 
-@bots.on_message(
-    filters.command("cigikes", [cmd]) & filters.user(DEVS) & ~filters.me
-)
+@bots.on_message(filters.command("cigikes", [cmd]) & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command(["gikes"], cmd) & filters.me)
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):

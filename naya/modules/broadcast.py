@@ -2,8 +2,8 @@ import asyncio
 
 from pyrogram import *
 from pyrogram.enums import ChatType
-from pyrogram.errors import BadRequest
 from pyrogram.types import *
+
 from . import *
 
 __MODULE__ = "Broadcast"
@@ -72,9 +72,7 @@ async def _(client, message: Message):
                 send = message.reply_to_message
             else:
                 if len(message.command) < 2:
-                    return await msg.edit(
-                        "Mohon berikan pesan atau balas ke pesan..."
-                    )
+                    return await msg.edit("Mohon berikan pesan atau balas ke pesan...")
                 else:
                     send = message.text.split(None, 1)[1]
             chat_id = dialog.chat.id

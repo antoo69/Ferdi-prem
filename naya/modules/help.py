@@ -1,10 +1,10 @@
 import re
 from datetime import datetime
+
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 
 from . import *
-
 from .ping import START_TIME, _human_time_duration
 
 
@@ -145,9 +145,7 @@ async def _(client, callback_query):
     back_match = re.match(r"help_back", callback_query.data)
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
-        text = (
-            f"<b>Bantuan Untuk {CMD_HELP[module].__MODULE__}\n{CMD_HELP[module].__HELP__}</b>\n"
-        )
+        text = f"<b>Bantuan Untuk {CMD_HELP[module].__MODULE__}\n{CMD_HELP[module].__HELP__}</b>\n"
         await callback_query.edit_message_text(
             text,
             reply_markup=InlineKeyboardMarkup(
@@ -156,26 +154,18 @@ async def _(client, callback_query):
             disable_web_page_preview=True,
         )
     if "Animasi" in text:
-            text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
-            button = [
-                [
-                    InlineKeyboardButton(
-                        "Animasi 1", callback_data="animasi animasi_1"
-                    ),
-                    InlineKeyboardButton(
-                        "Animasi 2", callback_data="animasi animasi_2"
-                    ),
-                ],
-                [
-                    InlineKeyboardButton(
-                        "Animasi 3", callback_data="animasi animasi_3"
-                    ),
-                    InlineKeyboardButton(
-                        "Animasi 4", callback_data="animasi animasi_4"
-                    ),
-                ],
-                [InlineKeyboardButton("❮", callback_data="help_back")],
-            ]
+        text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
+        button = [
+            [
+                InlineKeyboardButton("Animasi 1", callback_data="animasi animasi_1"),
+                InlineKeyboardButton("Animasi 2", callback_data="animasi animasi_2"),
+            ],
+            [
+                InlineKeyboardButton("Animasi 3", callback_data="animasi animasi_3"),
+                InlineKeyboardButton("Animasi 4", callback_data="animasi animasi_4"),
+            ],
+            [InlineKeyboardButton("❮", callback_data="help_back")],
+        ]
     top_text = f"<b>Help Inline Menu\nPrefixes: <code>{cmd}</code></b>"
     if prev_match:
         curr_page = int(prev_match.group(1))
@@ -201,8 +191,8 @@ async def _(client, callback_query):
             reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
             disable_web_page_preview=True,
         )
-        
-        
+
+
 @app.on_callback_query(filters.regex("^animasi"))
 async def _(client, callback_query):
     data = callback_query.data.split()[1]

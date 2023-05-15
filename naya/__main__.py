@@ -15,7 +15,6 @@ from uvloop import install
 from naya import *
 from naya.modules import loadModule
 
-
 MSG_ON = """
 **Naya Premium Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾

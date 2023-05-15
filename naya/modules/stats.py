@@ -7,9 +7,12 @@
 
 
 from datetime import datetime
+
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
+
 from . import *
+
 
 @bots.on_message(filters.me & filters.command(["stats"], cmd))
 async def stats(client: Client, message: Message):
@@ -53,6 +56,7 @@ async def stats(client: Client, message: Message):
             ms, u, g, sg, c, a_chat, b
         )
     )
+
 
 __MODULE__ = "Stats"
 __HELP__ = f"""
