@@ -5,7 +5,8 @@ import random
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import enums, filters
 
-from . import *
+from naya import *
+from kynaylibs.nan.utils import eor
 
 __MODULE__ = "Logo"
 __HELP__ = f"""
