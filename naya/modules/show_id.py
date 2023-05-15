@@ -3,7 +3,7 @@ from pyrogram.enums import ChatType
 
 from . import *
 
-__MODULE__ = "Id"
+__MODULE__ = "Show ID"
 __HELP__ = f"""
 ๏ Perintah: <code>{cmd}id</code>
 ◉ Penjelasan: Untuk mengetahui ID dari user/grup/channel.
