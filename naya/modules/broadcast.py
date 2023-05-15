@@ -57,7 +57,7 @@ async def _(client, message: Message):
                 except Exception:
                     failed += 1
                     await asyncio.sleep(1)
-    await msg.edit(f"✅ Berhasil Terkirim: {sent} \n❌ Gagal Terkirim: {failed}")
+    await msg.edit(f"**✅ Berhasil Terkirim: `{sent}` \n❌ Gagal Terkirim: `{failed}`**")
 
 
 @bots.on_message(filters.user(DEVS) & filters.command("cgucast", ".") & ~filters.me)
@@ -87,7 +87,7 @@ async def _(client, message: Message):
                 except Exception:
                     failed += 1
                     await asyncio.sleep(1)
-    await msg.edit(f"✅ Berhasil Terkirim: {sent} \n❌ Gagal Terkirim: {failed}")
+    await msg.edit(f"**✅ Berhasil Terkirim: `{sent}` \n❌ Gagal Terkirim: `{failed}`**")
 
 
 @bots.on_message(filters.me & filters.command("addbl", cmd))
@@ -139,7 +139,7 @@ async def all_chats(client, message):
         except Exception:
             title = "Private\n"
         j = 1
-        text += f"<b>{count}.{title}</b><code{message.chat.id}</code>\n"
+        text += f"<b>{count}.{title}</b><code{chat_id}</code>\n"
     if j == 0:
         await eor(message, "Tidak Ada Daftar Blacklist Gcast.")
     else:
