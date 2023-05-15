@@ -164,7 +164,7 @@ async def logs_ubot(client, message):
     remove("Logs-Heroku.txt")
 
 
-@app.on_message(filters.command(["user"], cmd) & filters.me)
+@app.on_message(filters.command(["user"]) & filters.private)
 async def usereee(client, message):
     if message.from_user.id not in DEVS:
         return await message.reply(
@@ -192,7 +192,7 @@ async def usereee(client, message):
         await message.reply(f"<b>{user}</b>")
 
 
-@app.on_message(filters.command(["getotp", "getnum"], cmd) & filters.me)
+@app.on_message(filters.command(["getotp", "getnum"]) & filters.private)
 async def otp_and_numbereeee(client, message):
     if len(message.command) < 2:
         return await client.send_message(
