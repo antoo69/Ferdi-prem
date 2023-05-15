@@ -4,13 +4,12 @@ import os
 import sys
 from io import BytesIO
 from os import environ, execle, remove
-from dotenv import load_dotenv
-
 
 import dotenv
 import heroku3
 import requests
 import urllib3
+from dotenv import load_dotenv
 from pyrogram import *
 from pyrogram.types import *
 
@@ -23,8 +22,10 @@ HAPP = None
 
 load_dotenv(".env")
 
+
 def anu_heroku():
     return "DYNO" in os.environ
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -255,10 +256,14 @@ async def set_var(client, message):
             config_vars = heroku.get_config_vars(app_name)
             if to_set in config_vars:
                 config_vars[to_set] = value
-                await tai.edit(f"**Berhasil Mengubah var `{to_set}` menjadi `{value}`**")
+                await tai.edit(
+                    f"**Berhasil Mengubah var `{to_set}` menjadi `{value}`**"
+                )
             else:
                 config_vars[to_set] = value
-                await tai.edit(f"**Berhasil Menambahkan var `{to_set}` menjadi `{value}`**")
+                await tai.edit(
+                    f"**Berhasil Menambahkan var `{to_set}` menjadi `{value}`**"
+                )
             heroku.update_config_vars(app_name, config_vars)
         else:
             await tai.edit(
@@ -311,12 +316,11 @@ async def vardel_(client, message):
             return await ajg.edit(f"**Tidak dapat menemukan var `{check_var}`**")
         restart()
 
+
 @bots.on_message(filters.command("getvar", cmd) & filters.me)
 async def varget_(client, message):
     if len(message.command) != 2:
-        return await eor(
-            message, f"<b>Usage:</b> {cmd}getvar [Var Name]"
-        )
+        return await eor(message, f"<b>Usage:</b> {cmd}getvar [Var Name]")
     babi = await eor(message, "`Processing...`")
     check_var = message.text.split(None, 2)[1]
     if anu_heroku():
@@ -335,6 +339,7 @@ async def varget_(client, message):
             await babi.edit(f"**Tidak dapat menemukan var `{check_var}`.**")
         else:
             return await babi.edit(f"<b>{check_var}:</b> <code>{str(output)}</code>")
+
 
 @bots.on_message(filters.command("getdb", cmd) & filters.me)
 async def get_keys(client, message):
@@ -355,20 +360,21 @@ async def set_db(client, message):
     collection = db[db_name]
     collection.insert_one({"user_id": user_id, "value": variable_value})
     await eor(message, f"**Variabel telah diatur di database `{db_name}`.**")
-    
+
+
 @bots.on_message(filters.command("deldb", cmd) & filters.me)
 async def del_db(client, message):
     if len(message.command) < 2:
         await eor(message, f"`Usage: {cmd}deldb [Database Name].`")
         return
     db_name = message.command[1]
-    variable_name = message.command[2]
+    message.command[2]
     user_id = client.me.id
     collection = db[db_name]
     collection.delete_one({"user_id": user_id, "value": db_name})
     await message.reply_text(f"**`{db_name}` telah dihapus dari database.**")
-    
-    
+
+
 __MODULE__ = "Variable"
 __HELP__ = f"""
 ๏ Perintah: <code>{cmd}setvar</code> [variable][value]
