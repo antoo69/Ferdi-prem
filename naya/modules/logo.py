@@ -2,11 +2,11 @@ import glob
 import os
 import random
 
+from kynaylibs.nan.utils import eor
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import enums, filters
 
 from naya import *
-from kynaylibs.nan.utils import eor
 
 __MODULE__ = "Logo"
 __HELP__ = f"""
