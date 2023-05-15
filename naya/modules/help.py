@@ -155,7 +155,7 @@ async def _(client, callback_query):
             ),
             disable_web_page_preview=True,
         )
-     if "Animasi" in text:
+    if "Animasi" in text:
             text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
             button = [
                 [
