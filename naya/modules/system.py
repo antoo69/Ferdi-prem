@@ -180,11 +180,11 @@ async def usereee(client, message):
     for X in bots:
         try:
             count += 1
-            user += fcmd"
+            user += f"""
 ❏ USERBOT KE {count}
  ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a>
  ╰ ID: <code>{X.me.id}</code>
-cmd"
+"""
         except BaseException:
             pass
     if int(len(str(user))) > 4096:
