@@ -152,7 +152,7 @@ async def set_bio(client: Client, message: Message):
     else:
         bio = message.text.split(None, 1)[1]
     tex = await message.reply_text("`Processing . . .`")
-    if note bio:
+    if not bio:
     	return await tex.edit("Berikan text atau balas text untuk diatur sebagai nama anda.")
         try:
             await client.update_profile(bio=bio)
