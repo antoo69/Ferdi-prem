@@ -341,16 +341,6 @@ async def varget_(client, message):
             return await babi.edit(f"<b>{check_var}:</b> <code>{str(output)}</code>")
 
 
-@bots.on_message(filters.command("getdb", cmd) & filters.me)
-async def getdb_(client, message):
-    database = []
-    for var_name, var_value in globals().items():
-        if isinstance(var_value, type(db)):
-            database.append(var_name)
-    anulist = "\n".join([f"  • {db_name}" for db_name in database])
-    result_text = f"Daftar Database:\n{anulist}"
-    await message.reply(result_text)
-
 
 @bots.on_message(filters.command("setdb", cmd) & filters.me)
 async def set_db(client, message):
@@ -371,7 +361,6 @@ async def del_db(client, message):
         await eor(message, f"`Usage: {cmd}deldb [Database Name].`")
         return
     db_name = message.command[1]
-    message.command[2]
     user_id = client.me.id
     collection = db[db_name]
     collection.delete_one({"user_id": user_id, "value": db_name})
