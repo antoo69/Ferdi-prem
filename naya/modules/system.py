@@ -341,7 +341,6 @@ async def varget_(client, message):
             return await babi.edit(f"<b>{check_var}:</b> <code>{str(output)}</code>")
 
 
-
 @bots.on_message(filters.command("setdb", cmd) & filters.me)
 async def set_db(client, message):
     if len(message.command) < 3:
