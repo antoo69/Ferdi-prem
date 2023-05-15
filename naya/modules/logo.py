@@ -17,7 +17,10 @@ __HELP__ = f"""
 
 @bots.on_message(filters.command(["logo"], cmd) & filters.me)
 async def logo_gen(client, message):
-    name = message.text.split(" ", 1)[1]
+    if message.reply_to_message:
+        name = message.reply_to_message.text
+    else:
+        name = message.text.split(None, 1)[1]
     xx = await eor(message, "<code>Processing...</code>")
     if not name:
         await xx.edit(f"<b>Contoh :</b><code>{PREFIX[0]}logo</code> [text]")
