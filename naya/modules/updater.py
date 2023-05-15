@@ -310,7 +310,7 @@ async def _(client, message):
         except Exception as err:
             return await response.edit(f"{nrs.text}\n\nERROR: <code>{err}</code>")
     else:
-        await bash("pip3 install -r requirements.txt")
+        await bash("pip3 install -U -r requirements.txt")
         restart()
         exit()
 
