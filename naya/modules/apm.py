@@ -8,7 +8,7 @@
 
 from kynaylibs.nan.utils.db import permit as set
 from pyrogram import enums, filters
-
+from kynaylibs.nan.utils.db.permit import *
 from . import *
 
 PM_LOGGER = 1
