@@ -175,7 +175,7 @@ async def _(client, message):
     ups_rem = repo.remote("upstream")
     ups_rem.fetch(ac_br)
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
-    if "deploy" not in conf:
+    if "gas" not in conf:
         if changelog:
             changelog_str = f"**Update Available For Branch [{ac_br}]:\n\nCHANGELOG:**\n\n`{changelog}`"
             if len(changelog_str) > 4096:
@@ -186,13 +186,13 @@ async def _(client, message):
                 await client.send_document(
                     message.chat.id,
                     "output.txt",
-                    caption=f"**Type** `update gas` **To Update Userbot.**",
+                    caption=f"**Type** `{cmd}update gas` **To Update Userbot.**",
                     reply_to_message_id=status.id,
                 )
                 remove("output.txt")
             else:
                 return await status.edit(
-                    f"{changelog_str}\n**Type** `update gas` **To Update Userbot.**",
+                    f"{changelog_str}\n**Type** `{cmd}update gas` **To Update Userbot.**",
                     disable_web_page_preview=True,
                 )
         else:
