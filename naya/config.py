@@ -10,7 +10,7 @@ API_HASH = getenv("API_HASH")
 MONGO_URL = getenv("MONGO_URL", "")
 BOT_TOKEN = getenv("BOT_TOKEN")
 OPENAI_API = getenv("OPENAI_API", "")
-
+GIT_TOKEN = getenv("GIT_TOKEN")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 BRANCH = getenv("BRANCH", "naya")  # don't change
