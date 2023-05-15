@@ -127,7 +127,6 @@ async def updateme_requirements():
         return repr(e)
 
 
-
 @bots.on_message(filters.command("update", cmd) & filters.me)
 async def _(client, message):
     status = await message.edit("`Checking for Updates, Wait a Moment...`")
