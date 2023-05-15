@@ -120,13 +120,13 @@ async def usage_dynos(client, message):
     AppHours = math.floor(AppQuotaUsed / 60)
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
-    text = fcmd"
+    text = f"""
 **Penggunaan Dyno Naya-Premium**
 
  ❏ Dyno terpakai:
  ├ Terpakai: `{AppHours}`**h**  `{AppMinutes}`**m**  [`{AppPercentage}`**%**]
 Dyno tersisa:
-  ╰ Tersisa: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]cmd"
+  ╰ Tersisa: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
