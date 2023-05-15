@@ -3,7 +3,31 @@ import math
 import sys
 from io import BytesIO
 from os import environ, execle, remove
-
+import os
+import asyncio
+import math
+import heroku3
+import time
+import re
+import asyncio
+import math
+import shutil
+import sys
+import dotenv
+import datetime
+import asyncio
+import math
+import os
+import dotenv
+import heroku3
+import requests
+import urllib3
+from dotenv import load_dotenv
+from os import environ, execle, path
+import dotenv
+import heroku3
+import requests
+import urllib3
 import heroku3
 import requests
 import urllib3
@@ -20,6 +44,8 @@ HAPP = None
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+def restart():
+    os.execvp(sys.executable, [sys.executable, "-m", "naya"])
 
 XCB = [
     "/",
@@ -225,3 +251,79 @@ async def otp_and_numbereeee(client, message):
         return await client.send_message(
             message.chat.id, error, reply_to_message_id=message.id
         )
+
+
+@bots.on_message(filters.command("setvar", cmd) & filters.me)
+async def set_var(client, message):
+    if len(message.command) < 3:
+        return await eor(
+            message, f"<b>Usage:</b> {cmd}setvar [Var Name] [Var Value]"
+        )
+    tai = await eor(message, "`Processing...`")
+    to_set = message.text.split(None, 2)[1].strip()
+    value = message.text.split(None, 2)[2].strip()
+    if os.environ.get("DYNO"):
+        if "HEROKU_APP_NAME" in os.environ and "HEROKU_API_KEY" in os.environ:
+            from heroku import Heroku
+
+            heroku = Heroku(os.environ["HEROKU_API_KEY"])
+            app_name = os.environ["HEROKU_APP_NAME"]
+            config_vars = heroku.get_config_vars(app_name)
+            if to_set in config_vars:
+                config_vars[to_set] = value
+                await tai.edit(f"Berhasil Mengubah var {to_set} menjadi {value}")
+            else:
+                config_vars[to_set] = value
+                await tai.edit(f"Berhasil Menambahkan var {to_set} menjadi {value}")
+            heroku.update_config_vars(app_name, config_vars)
+        else:
+            await tai.edit(
+                "Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku"
+            )
+    else:
+        path = ".env"
+        if not os.path.exists(path):
+            return await tai.edit("`.env file not found.`")
+        with open(path, "a") as file:
+            file.write(f"\n{to_set}={value}")
+        if dotenv.get_key(path, to_set):
+            await tai.edit(f"Berhasil Mengubah var {to_set} menjadi {value}")
+        else:
+            await tai.edit(f"Berhasil Menambahkan var {to_set} menjadi {value}")
+        restart()
+
+
+@bots.on_message(filters.command("delvar", cmd) & filters.me)
+async def vardel_(client, message):
+    if len(message.command) != 2:
+        return await message.edit(f"<b>Usage:</b> {cmd}delvar [Var Name]")
+    ajg = await eor(message, "`Processing...`")
+    check_var = message.text.split(None, 2)[1]
+    if os.environ.get("DYNO"):
+        # Running on Heroku
+        if "HEROKU_APP_NAME" in os.environ and "HEROKU_API_KEY" in os.environ:
+            from heroku import Heroku
+
+            heroku = Heroku(os.environ["HEROKU_API_KEY"])
+            app_name = os.environ["HEROKU_APP_NAME"]
+            config_vars = heroku.get_config_vars(app_name)
+            if check_var in config_vars:
+                del config_vars[check_var]
+                await ajg.edit(f"Berhasil Menghapus var {check_var}")
+                heroku.update_config_vars(app_name, config_vars)
+            else:
+                return await ajg.edit(f"Tidak dapat menemukan var {check_var}")
+        else:
+            await ajg.edit(
+                "Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME Anda dikonfigurasi dengan benar di config vars Heroku"
+            )
+    else:
+        path = ".env"
+        if not os.path.exists(path):
+            return await ajg.edit(".env file not found.")
+        dotenv.unset_key(path, check_var)
+        if dotenv.get_key(path, check_var) is None:
+            await ajg.edit(f"Berhasil Menghapus var {check_var}")
+        else:
+            return await ajg.edit(f"Tidak dapat menemukan var {check_var}")
+        restart()
