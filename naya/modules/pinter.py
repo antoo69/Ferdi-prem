@@ -7,12 +7,12 @@ from . import *
 
 __MODULE__ = "Pinterest"
 __HELP__ = f"""
-๏ Perintah: <code>{PREFIX[0]}pinter</code> [link]
+๏ Perintah: <code>{cmd}pinter</code> [link]
 ◉ Penjelasan: Untuk mengunduh media dari pinterest.
 """
 
 
-@bots.on_message(filters.me & filters.command("pinter", PREFIX))
+@bots.on_message(filters.me & filters.command("pinter", cmd))
 async def _(client, message):
     if len(message.command) < 2:
         return
