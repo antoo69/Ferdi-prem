@@ -50,7 +50,7 @@ XCB = [
     "main",
 ]
 
-
+@bots.on_message(filters.command(["restart"]) & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command("restart", cmd) & filters.me)
 async def restart_bot(_, message):
     try:
@@ -63,6 +63,7 @@ async def restart_bot(_, message):
     if HAPP is not None:
         HAPP.restart()
     else:
+        await bash("git pull && pip3 install -U -r requirements.txt")
         args = [sys.executable, "-m", "naya"]
         execle(sys.executable, *args, environ)
 
