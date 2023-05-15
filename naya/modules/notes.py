@@ -72,15 +72,15 @@ async def get_notes(client, message):
 
 __MODULE__ = "Notes"
 __HELP__ = f"""
-๏ Perintah: <code>{PREFIX[0]}save</code> [nama catatan] [balas pesan]
+๏ Perintah: <code>{cmd}save</code> [nama catatan] [balas pesan]
 ◉ Penjelasan: Untuk menyimpan catatan.
 
-๏ Perintah: <code>{PREFIX[0]}get</code> [nama catatan]
+๏ Perintah: <code>{cmd}get</code> [nama catatan]
 ◉ Penjelasan: Untuk mengambil catatan.
            
-๏ Perintah: <code>{PREFIX[0]}rm</code> [nama catatan]
+๏ Perintah: <code>{cmd}rm</code> [nama catatan]
 ◉ Penjelasan: Untuk menghapus catatan.
            
-๏ Perintah: <code>{PREFIX[0]}notes</code>
+๏ Perintah: <code>{cmd}notes</code>
 ◉ Penjelasan: Untuk melihat semua catatan.
 """
