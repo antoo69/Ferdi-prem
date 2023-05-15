@@ -342,9 +342,14 @@ async def varget_(client, message):
 
 
 @bots.on_message(filters.command("getdb", cmd) & filters.me)
-async def get_keys(client, message):
-    data = mongo.list_database_names()
-    await eor(message, f"Daftar Database:\n{', '.join(data)}")
+async def getdb_(client, message):
+    database = []
+    for var_name, var_value in globals().items():
+        if isinstance(var_value, type(db)):
+            database.append(var_name)
+    anulist = "\n".join([f"  • {db_name}" for db_name in database])
+    result_text = f"Daftar Database:\n{anulist}"
+    await message.reply(result_text)
 
 
 @bots.on_message(filters.command("setdb", cmd) & filters.me)
