@@ -90,7 +90,7 @@ async def _(client, message):
         await y.edit("<b>Ayang tidak ditemukan silahkan ulangi beberapa saat lagi</b>")
 
 
-@bots.on_message(filters.me & filters.command("cowo", PREFIX))
+@bots.on_message(filters.me & filters.command("cowo", cmd))
 async def _(client, message):
     y = await eor(message, "<b>🔍 Mencari Ayang...</b>")
     try:
