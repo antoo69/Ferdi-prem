@@ -51,7 +51,7 @@ XCB = [
 ]
 
 
-@bots.on_message(filters.command(["restart"]) & filters.user(DEVS) & ~filters.me)
+@bots.on_message(filters.command(["restart"], "") & filters.user(DEVS) & ~filters.me)
 @bots.on_message(filters.command("restart", cmd) & filters.me)
 async def restart_bot(_, message):
     try:
