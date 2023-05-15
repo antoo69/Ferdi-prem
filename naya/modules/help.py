@@ -168,7 +168,7 @@ async def _(client, callback_query):
                 ],
                 [InlineKeyboardButton("❮", callback_data="help_back")],
             ]
-        
+
         await callback_query.edit_message_text(
             text=text,
             reply_markup=InlineKeyboardMarkup(button),
