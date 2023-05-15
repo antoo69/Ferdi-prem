@@ -135,7 +135,7 @@ async def setname(client, message):
     else:
         name = message.text.split(None, 1)[1]
     tex = await message.reply_text("`Processing . . .`")
-    if note naya:
+    if note name:
     	return await tex.edit("Berikan text atau balas text untuk diatur sebagai nama anda.")
         try:
             await client.update_profile(first_name=name)
