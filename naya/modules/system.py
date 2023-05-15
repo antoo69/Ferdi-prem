@@ -1,33 +1,11 @@
 import asyncio
 import math
+import os
 import sys
 from io import BytesIO
 from os import environ, execle, remove
-import os
-import asyncio
-import math
-import heroku3
-import time
-import re
-import asyncio
-import math
-import shutil
-import sys
+
 import dotenv
-import datetime
-import asyncio
-import math
-import os
-import dotenv
-import heroku3
-import requests
-import urllib3
-from dotenv import load_dotenv
-from os import environ, execle, path
-import dotenv
-import heroku3
-import requests
-import urllib3
 import heroku3
 import requests
 import urllib3
@@ -44,8 +22,10 @@ HAPP = None
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+
 def restart():
     os.execvp(sys.executable, [sys.executable, "-m", "naya"])
+
 
 XCB = [
     "/",
@@ -256,9 +236,7 @@ async def otp_and_numbereeee(client, message):
 @bots.on_message(filters.command("setvar", cmd) & filters.me)
 async def set_var(client, message):
     if len(message.command) < 3:
-        return await eor(
-            message, f"<b>Usage:</b> {cmd}setvar [Var Name] [Var Value]"
-        )
+        return await eor(message, f"<b>Usage:</b> {cmd}setvar [Var Name] [Var Value]")
     tai = await eor(message, "`Processing...`")
     to_set = message.text.split(None, 2)[1].strip()
     value = message.text.split(None, 2)[2].strip()
