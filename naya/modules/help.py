@@ -148,7 +148,7 @@ async def _(client, callback_query):
         text = f"<b>Bantuan Untuk {CMD_HELP[module].__MODULE__}\n{CMD_HELP[module].__HELP__}</b>\n"
         button = [[InlineKeyboardButton("❮", callback_data="help_back")]]
         if "Animasi" in text:
-            text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
+            text = f"<b>Help Inline Menu\nPrefixes: <code>{cmd}</code></b>"
             button = [
                 [
                     InlineKeyboardButton(
@@ -168,7 +168,7 @@ async def _(client, callback_query):
                 ],
                 [InlineKeyboardButton("❮", callback_data="help_back")],
             ]
-
+        
         await callback_query.edit_message_text(
             text=text,
             reply_markup=InlineKeyboardMarkup(button),
