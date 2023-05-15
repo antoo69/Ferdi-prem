@@ -18,7 +18,7 @@ from .config import (API_HASH, API_ID, BOT_TOKEN, CMD_HNDLR, SESSION1,
                      SESSION2, SESSION3, SESSION4, SESSION5, SESSION6,
                      SESSION7, SESSION8, SESSION9, SESSION10)
 from .logging import LOGGER
-
+StartTime = time.time()
 cmd = CMD_HNDLR
 ids = []
 CMD_HELP = {}
