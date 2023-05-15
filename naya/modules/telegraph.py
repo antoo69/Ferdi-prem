@@ -12,7 +12,7 @@ __HELP__ = f"""
 """
 
 telegraph = Telegraph()
-get_result = telegraph.create_account(short_name=app.me.username)
+get_result = telegraph.create_account(short_name=a"Naya)
 auth_url = get_result["auth_url"]
 
 
