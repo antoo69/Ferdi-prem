@@ -84,7 +84,7 @@ def gen_font(text, new_font):
     return text
 
 
-@bots.on_message(filters.me & filters.command(["font"], PREFIX))
+@bots.on_message(filters.me & filters.command(["font"], cmd))
 async def font_ubot(client, message):
     if message.reply_to_message or get_arg(message):
         font = get_arg(message)
@@ -128,7 +128,7 @@ async def font_ubot(client, message):
         return await eor(message, "Balas Teks Dan Isi Nama Font!!!")
 
 
-@bots.on_message(filters.me & filters.command(["lf", "listfont"], PREFIX))
+@bots.on_message(filters.me & filters.command(["lf", "listfont"], cmd))
 async def fonts(client, message):
     await eor(
         message,
