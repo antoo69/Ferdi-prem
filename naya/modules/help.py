@@ -146,26 +146,29 @@ async def _(client, callback_query):
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>Bantuan Untuk {CMD_HELP[module].__MODULE__}\n{CMD_HELP[module].__HELP__}</b>\n"
-        await callback_query.edit_message_text(
-            text,
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("❮", callback_data="help_back")]]
-            ),
-            disable_web_page_preview=True,
-        )
-    if "Animasi" in text:
-        text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
-        button = [
-            [
-                InlineKeyboardButton("Animasi 1", callback_data="animasi animasi_1"),
-                InlineKeyboardButton("Animasi 2", callback_data="animasi animasi_2"),
-            ],
-            [
-                InlineKeyboardButton("Animasi 3", callback_data="animasi animasi_3"),
-                InlineKeyboardButton("Animasi 4", callback_data="animasi animasi_4"),
-            ],
-            [InlineKeyboardButton("❮", callback_data="help_back")],
-        ]
+        button = [[InlineKeyboardButton("❮", callback_data="help_back")]]
+        if "Animasi" in text:
+            text = f"<b>Help Inline Menu\nPrefixes: <code>{COMMAND}</code></b>"
+            button = [
+                [
+                    InlineKeyboardButton(
+                        "Animasi 1", callback_data="animasi animasi_1"
+                    ),
+                    InlineKeyboardButton(
+                        "Animasi 2", callback_data="animasi animasi_2"
+                    ),
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Animasi 3", callback_data="animasi animasi_3"
+                    ),
+                    InlineKeyboardButton(
+                        "Animasi 4", callback_data="animasi animasi_4"
+                    ),
+                ],
+                [InlineKeyboardButton("❮", callback_data="help_back")],
+            ]
+        
         await callback_query.edit_message_text(
             text=text,
             reply_markup=InlineKeyboardMarkup(button),
