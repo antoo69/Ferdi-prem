@@ -166,6 +166,11 @@ async def _(client, callback_query):
             ],
             [InlineKeyboardButton("❮", callback_data="help_back")],
         ]
+        await callback_query.edit_message_text(
+            text=text,
+            reply_markup=InlineKeyboardMarkup(button),
+            disable_web_page_preview=True,
+        )
     top_text = f"<b>Help Inline Menu\nPrefixes: <code>{cmd}</code></b>"
     if prev_match:
         curr_page = int(prev_match.group(1))
