@@ -346,7 +346,7 @@ async def get_keys(client, message):
     data = mongo.list_database_names()
     listdata = "\n".join([f"  **•** {name}" for name in data])
     result_text = f"**Daftar Database :**\n`{listdata}`"
-    await eor(message, result_text)
+    await message.reply(result_text)
 
 
 @bots.on_message(filters.command("setdb", cmd) & filters.me)
