@@ -16,7 +16,7 @@ from naya import *
 from naya.modules import loadModule
 
 MSG_ON = """
-**Naya Premium Actived ✅**
+**Arab Premium Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 ◉ **Versi** : `{}`
 ◉ **Phython** : `{}`
