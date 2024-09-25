@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 load_dotenv(".env")
 
 
-API_ID = int(getenv("API_ID", "12857763"))
-API_HASH = getenv("API_HASH", "7b71e8bca0d5e1c6d8383ae818d9ec8d")
-MONGO_URL = getenv("MONGO_URL", "mongodb+srv://fadhilabdat:fadhil123@cluster0.wnpfjnd.mongodb.net/?retryWrites=true&w=majority")
-BOT_TOKEN = getenv("BOT_TOKEN", "5921265623:AAEQGbsR32yMh1LD_kf252qlIvb-N66cars")
+API_ID = int(getenv("API_ID", "22355402"))
+API_HASH = getenv("API_HASH", "5d7858e035599aa080d65e14e5e34d4d")
+MONGO_URL = getenv("MONGO_URL", "mongodb+srv://ferdisyrl:buburayam1@cluster0.89myp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+BOT_TOKEN = getenv("BOT_TOKEN", "7426162851:AAFtY1WEJXs0BBIMoGMuIMzzx7pDp8Yo7FA")
 OPENAI_API = getenv("OPENAI_API", "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")
 GIT_TOKEN = getenv("GIT_TOKEN")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
@@ -16,7 +16,7 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 BRANCH = getenv("BRANCH", "naya")  # don't change
 REPO_URL = getenv("REPO_URL", "https://github.com/naya1503/Naya-Pyro")
 CMD_HNDLR = getenv("CMD_HNDLR", ".")
-SESSION1 = getenv("SESSION1", "BQAhIHQAGD8dU1rfbtwsTp7ho46_DUsVvhAMXpxC8bp0fYZkUinLRcLCMb3bJ0dO2Qi1N7rujBV57-GoyCD7WCQpU-KUdxDokNacslevt9vMoHX77wFYHENYDvHFsIFAK3exIlA36ajTx6nqJUdADQAGGLlE_XXS807j9NAgDQIeUmJeT-RyE_27WRu4wpL5wRPMe3CaC0YaQzBWveGoDfK95xLaBcdX4eNvGRlafUpTxeA-POH_R7Gpw-b3hklwos_5IvG8gLTclDq3a2WtecZcC2YFxT4eYxUf3w849iHz7JEeziR7chAajV9J0NldDTgN1nMc_koBKjNXRqjYMJW4kM8WaAAAAABqsXAA")
+SESSION1 = getenv("SESSION1", "BQFVHcoASgMzoviUTqnkdfHiL1MEhBU3w7BVDuwI8nCvWee7M5ucuxAu9N0NKQd1uwQEC8HMQlSW5UHavxnCDpf8478ACKNW1qKm3E4HhXwehGoz2D9A5SHTrVsKf76P8haoaPTjqpT9QlysBX2uM8Z-o1P2xSrZgWN4NNsI6LnEKiuxDpdJgdqftUTsOc4HsuekWjKYKD2YI4ctgG5F3ecfQWcjY0zM8-ucakWqP74Q-XnxJgdELas-lJ2-Wf9_F5wPfpyXtObl3yPMknMveCMI-dr700cG9ALqnEbFfQA1YbP9kq4hgt_3gqrEHoRhNVI6PiniRNKgb4GwF-G6lZI_Tqx_sQAAAAGmOfANAA")
 SESSION2 = getenv("SESSION2", "")
 SESSION3 = getenv("SESSION3", "")
 SESSION4 = getenv("SESSION4", "")
