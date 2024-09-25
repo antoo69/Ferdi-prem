@@ -54,7 +54,7 @@ async def _(client, inline_query):
                         ),
                         InlineKeyboardButton(
                             text="support",
-                            url=f"https://t.me/kynansupport",
+                            url=f"https://t.me/BestieVirtual",
                         ),
                     ],
                 ]
@@ -67,7 +67,7 @@ async def _(client, inline_query):
                         ),
                         InlineKeyboardButton(
                             text="support",
-                            url=f"https://t.me/kynansupport",
+                            url=f"https://t.me/BestieVirtual",
                         ),
                     ]
                 ]
