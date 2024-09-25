@@ -16,7 +16,7 @@ from naya import *
 from naya.modules import loadModule
 
 MSG_ON = """
-**Arab Premium Actived ✅**
+**Ferdi Premium Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 ◉ **Versi** : `{}`
 ◉ **Phython** : `{}`
@@ -38,7 +38,7 @@ async def main():
                     imported_module.__MODULE__.replace(" ", "_").lower()
                 ] = imported_module
     await app.start()
-    LOGGER("Naya Premium").info("Memulai Naya-Pyro..")
+    LOGGER("Naya Premium").info("Memulai Ferdi-Prem..")
     for bot in botlist:
         try:
             await bot.start()
